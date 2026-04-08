@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLOMS | Student Learning Outcome Management System</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--primary-color)',
+                        secondary: 'var(--secondary-color)',
+                        surface: '#ffffff',
+                        success: 'var(--success)',
+                        warning: 'var(--warning)',
+                        error: 'var(--error)',
+                        info: '#3b82f6',
+                    },
+                    borderRadius: {
+                        '2xl': '1rem',
+                        '3xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Libs -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 min-h-screen">
+    
+    <!-- App Container -->
+    <div id="app" class="min-h-screen relative flex bg-[#f9fafb]">
+        <!-- Dynamic content will be injected here -->
+        <div id="loading" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
+            <div class="flex flex-col items-center gap-4">
+                <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-secondary font-medium animate-pulse">Initializing SLOMS...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-[10000] flex flex-col gap-2"></div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="fixed inset-0 bg-black/50 z-[9998] hidden items-center justify-center p-4">
+        <div id="modal-content" class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-fadeIn">
+            <!-- Modal Body Injected Here -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/state.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/views/landing.js"></script>
+    <script src="js/views/login.js"></script>
+    <script src="js/views/adminDashboard.js"></script>
+    <script src="js/views/studentManagement.js"></script>
+    <script src="js/views/assessments.js"></script>
+    <script src="js/views/reports.js"></script>
+    <script src="js/views/studentDashboard.js"></script>
+    <script src="js/views/performance.js"></script>
+    <script src="js/views/profile.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

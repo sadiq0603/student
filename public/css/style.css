@@ -1,0 +1,72 @@
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --bg-color: #f9fafb;
+    --surface-color: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --success: #22c55e;
+    --warning: #eab308;
+    --error: #ef4444;
+    --info: #3b82f6;
+    --card-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4, .font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.gradient-bg {
+    background: var(--primary-gradient);
+}
+
+.card-shadow {
+    box-shadow: var(--card-shadow);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Transitions */
+.view-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sidebar behavior */
+#sidebar {
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+    #sidebar.hidden-mobile {
+        transform: translateX(-100%);
+    }
+}
+
+/* Custom Progress Bar Colors */
+.progress-green { background-color: var(--success); }
+.progress-yellow { background-color: var(--warning); }
+.progress-red { background-color: var(--error); }
+
+/* Recolorability classes */
+.theme-primary-text { color: #667eea; } /* Fallback, will be dynamic */
+.theme-primary-bg { background-color: #667eea; }
