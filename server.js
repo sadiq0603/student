@@ -95,7 +95,8 @@ function initFirebase() {
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+const publicDir = path.join(__dirname, 'public');
+app.use(express.static(publicDir));
 
 const authenticate = (_req, _res, next) => {
     next();
@@ -330,6 +331,11 @@ app.get('/api/reports', authenticate, asyncHandler(async (req, res) => {
         subjects
     });
 }));
+
+// Serve SPA shell for all non-API routes.
+app.get(/^\/(?!api\/).*/, (_req, res) => {
+    res.sendFile(path.join(publicDir, 'index.html'));
+});
 
 if (require.main === module) {
     bootstrap()
