@@ -90,9 +90,7 @@ function renderLogin() {
             if (response.success) {
                 AppState.setUser(response.user);
                 Toast.success('Login Successful! Redirecting...');
-                setTimeout(() => {
-                    AppState.navigate(AppState.isAdmin() ? 'adminDashboard' : 'studentDashboard');
-                }, 1000);
+                AppState.navigate(AppState.isAdmin() ? 'adminDashboard' : 'studentDashboard');
             }
         } catch (err) {
             Toast.error(err.message || 'Login failed');

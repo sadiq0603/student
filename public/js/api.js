@@ -1,19 +1,32 @@
 const API_BASE = '/api';
+const API_TIMEOUT_MS = 15000;
 
 const API = {
     async fetch(endpoint, options = {}) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
         try {
             const response = await fetch(`${API_BASE}${endpoint}`, {
                 ...options,
+                signal: controller.signal,
                 headers: {
                     'Content-Type': 'application/json',
                     ...options.headers
                 }
             });
-            const data = await response.json();
+            clearTimeout(timeoutId);
+            const contentType = response.headers.get('content-type') || '';
+            const data = contentType.includes('application/json')
+                ? await response.json()
+                : { message: `Unexpected response from server (${response.status})` };
             if (!response.ok) throw new Error(data.message || 'Something went wrong');
             return data;
         } catch (error) {
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                Toast.error('Server timeout. Please try again.');
+                throw new Error('Request timeout');
+            }
             console.error('API Error:', error);
             Toast.error(error.message);
             throw error;

@@ -94,6 +94,13 @@ async function renderStudentDashboard() {
 
     } catch (err) {
         Toast.error('Failed to load dashboard');
+        container.innerHTML = `
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Unable to load dashboard</h3>
+                <p class="text-slate-500 mb-6">${err.message || 'Please try again.'}</p>
+                <button onclick="renderStudentDashboard()" class="px-5 py-3 rounded-xl bg-primary text-white font-bold">Retry</button>
+            </div>
+        `;
     }
 }
 
